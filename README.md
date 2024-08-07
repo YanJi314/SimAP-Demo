@@ -1,5 +1,6 @@
 # SimAudioPlayer
 可能是最美观的 PC Web 端音频播放器~
+![demo](https://github.com/user-attachments/assets/973506c3-6614-4a27-8801-f041714f1e89)
 
 ## 在线体验
 https://yanji314.github.io/SimAP-Demo/
