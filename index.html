@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SimAP Demo</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="SimAP.css">
+		<link rel="stylesheet" href="SimProgress.css">
+		<link rel="stylesheet" href="SimLRC.css">
+	</head>
+	<body class="hideList">
+
+		<main>
+			<div class="controls">
+				<img id="album">
+				<div class="musicInfo">
+					<b>未知歌曲名</b>
+					<div>未知艺术家</div>
+				</div>
+				<div class="progressControl">
+					<span id="progressCurrent">0:00</span>
+					<div id="progressBar"></div>
+					<span id="progressDuration">0:00</span>
+				</div>
+				<div class="buttons">
+					<div class="listBtn" onclick="SimAPControls.toggleList()"><i>&#xF011;</i></div>
+					<div class="loopBtn" onclick="SimAPControls.toggleLoop()"><i>&#xF072;</i></div>
+					<div class="larger" onclick="SimAPControls.prev()"><i>&#xF140;</i></div>
+					<div class="play" onclick="SimAPControls.togglePlay()"><i>&#xF508;</i><i>&#xF507;</i></div>
+					<div class="larger" onclick="SimAPControls.next()"><i>&#xF144;</i></div>
+					<div class="volBtn" onclick="SimAPControls.toggleVolume()"><i>&#xF2A2;</i><div id="volBar" min="0" max="1" value="1"></div></div>
+					<div class="lyricsBtn" onclick="SimAPControls.toggleLyrics()"><i>&#xF201;</i></div>
+				</div>
+			</div>
+			<div class="lyrics"><div></div></div>
+			<div class="list">播放列表暂未实现 uwu</div>
+		</main>
+
+		<div id="background">
+			<div id="animationLeft"></div>
+			<div id="animationCenter"></div>
+			<div id="animationRight"></div>
+		</div>
+
+		<audio id="audio" preload="auto"></audio>
+
+		<script src="SimProgress.js"></script>
+		<script src="SimLRC.js"></script>
+		<script src="SimAP.js"></script>
+
+		<script>
+			onload = initializeSimAP(
+				{
+					album: "demo.jpg",
+					title: "风吹故里",
+					artist: "小蓝背心",
+					audio: "//chalkboard-oss.oss-cn-shanghai.aliyuncs.com/gjckvq8r7xdemo.mp3",
+					lyrics: `
+					[00:00.00]风吹故里
+					[00:16.41]风声静谧 秋雨依依
+					[00:22.53]时光又锁住一年的雨季
+					[00:31.11]潮湿空气 几分熟悉
+					[00:37.56]像那时相遇 你身上的气息
+					[00:44.83]黑白记忆 如同电影
+					[00:49.64]遗憾的剧情用离别布景
+					[00:53.09]漫长流年 独你缺席
+					[00:56.30]残缺的结局 是我一个人的独角戏
+					[00:59.73]我把思念写尽风中 吹过故里
+					[01:03.99]多想能落在你怀里 片刻光景
+					[01:07.67]可数不清的四季 已抹去爱的痕迹
+					[01:14.31]我把回忆轻轻拾起 放在掌心
+					[01:18.69]可惜你模糊的身影 无法靠近
+					[01:22.39]无数个失眠夜里 伤痛又会被唤醒
+					[01:40.17]黑白记忆 如同电影
+					[01:44.89]遗憾的剧情用离别布景
+					[01:48.39]漫长流年 独你缺席
+					[01:51.53]残缺的结局 是我一个人的独角戏
+					[01:54.91]我把思念写尽风中 吹过故里
+					[01:59.22]多想能落在你怀里 片刻光景
+					[02:02.91]可数不清的四季 已抹去爱的痕迹
+					[02:09.69]我把回忆轻轻拾起 放在掌心
+					[02:13.96]可惜你模糊的身影 无法靠近
+					[02:17.77]无数个失眠夜里 伤痛又会被唤醒
+					[02:24.42]我把思念写尽风中 吹过故里
+					[02:28.73]多想能落在你怀里 片刻光景
+					[02:32.61]可数不清的四季 已抹去爱的痕迹
+					[02:39.18]我把回忆轻轻拾起 放在掌心
+					[02:43.56]可惜你模糊的身影 无法靠近
+					[02:47.30]无数个失眠夜里 伤痛又会被唤醒`
+				}
+			);
+		</script>
+
+	</body>
+</html>

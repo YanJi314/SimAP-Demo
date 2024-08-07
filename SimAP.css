@@ -1,0 +1,64 @@
+@import "https://oss.starxw.com/fileadmin/static/font/misans/misans.css";
+@font-face{font-family:'icon';src:url('//s4.zstatic.net/ajax/libs/remixicon/4.2.0/remixicon.woff2');}
+html{background:#F9F9FB;font-size:16px;user-select:none;font-family:'misans','微软雅黑';}
+i{font-family:icon;font-style:normal;}
+img{pointer-events:none;}
+*{box-sizing:border-box;scrollbar-width:none;outline:none;}
+::-webkit-scrollbar{display:none;}
+
+#background{filter:blur(100px);z-index:-1;top:-200px;left:-200px;right:-200px;bottom:-200px;position:fixed;pointer-events:none;opacity:.3;}
+#background>div{width:max(40vw,40vh);height:max(40vw,40vh);animation-duration:20s;animation-iteration-count:infinite;animation-timing-function:cubic-bezier(0.1, 0, 0.9, 1);position:absolute;border-radius:100%;opacity:.8;}
+body:not(.playing) #background>div{animation-play-state:paused;}
+#animationLeft{z-index:-1;left:0%;top:0%;animation-name:animation-left;animation-direction:reverse;}
+#animationCenter{z-index:-2;left:50%;top:10%;animation-name:animation-center;}
+#animationRight{z-index:-3;right:0%;top:20%;animation-name:animation-right;}
+@keyframes animation-center{0%{transform:translateY(-30%) translateX(-50%);}50%{transform:translateY(30%) translateX(-50%);}100%{transform:translateY(-30%) translateX(-50%);}}
+@keyframes animation-left{0%{transform:translateY(25%) translateX(0%) skew(-40deg, 20deg);}50%{transform:translateY(200%) translateX(150%) skew(40deg, 0deg);}100%{transform:translateY(25%) translateX(0%) skew(-40deg, 20deg);}}
+@keyframes animation-right{0%{transform:translateY(5%) translateX(0%) skew(40deg, 20deg);}50%{transform:translateY(200%) translateX(-150%) skew(-40deg, 0deg);}100%{transform:translateY(5%) translateX(0%) skew(40deg, 20deg);}}
+
+main{position:fixed;inset:0;margin:20px max(calc(50vw - 470px), 50px);}
+.SimProgress{--SimProgressTheme:var(--SimAPTheme)!important;}
+
+/* 音频控件 */
+.controls{display:flex;flex-direction:column;width:350px;position:absolute;inset:0;height:fit-content;margin:auto 0;transition:margin .3s,transform .3s;z-index:5;}
+.hideLyrics.hideList .controls{margin:auto calc(50% - 175px);transform:scale(1.1);}
+.controls #album{width:calc(100% + 10px);border-radius:10px;box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);background:white;margin:-5px;}
+/* 专辑信息 */
+.controls .musicInfo{margin:30px 0 10px 0;}
+.controls .musicInfo b,.controls .musicInfo div{display:block;font-size:1.2em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.controls .musicInfo div{font-size:.9em;opacity:.8;}
+/* 进度条 */
+.controls .progressControl{display:flex;align-items:center;margin:10px 0;}
+.controls .progressControl span{width:55px;font-size:.85em;opacity:.8;}
+.controls .progressControl span:last-child{text-align:right;}
+/* 下方按钮 */
+.controls .buttons{align-items:center;margin-top:5px;display:flex;align-items:center;justify-content:center;}
+.controls .buttons>div{width:50px;height:50px;position:relative;font-size:1.5em;transition:all .2s;opacity:.3;border-radius:100px;overflow:hidden;}
+.controls .buttons>div:hover{background:rgba(0,0,0,.05);opacity:.7;}
+.controls .buttons>div:active{background:rgba(0,0,0,.1);opacity:.7;transform:scale(.95);}
+.controls .buttons>div>i{display:block;width:fit-content;height:fit-content;position:absolute;inset:0;margin:auto;transition:all .2s;}
+.controls .buttons>div.larger>i{font-size:1.15em;padding-bottom:1px;}
+.controls .buttons>.play{width:60px;height:60px;font-size:2.1em;opacity:1!important;font-weight:bold;}
+.controls .buttons>.play>i:last-child{opacity:0;transform:scale(.4);}
+.playing .controls .buttons>.play>i:first-child{opacity:0;transform:scale(.4);}
+.playing .controls .buttons>.play>i:last-child{opacity:1;transform:none;}
+/* 音量控制 */
+.volume .controls .buttons>div{width:0;opacity:0!important;}
+.volume .controls .buttons>.volBtn{width:200px;color:rgba(0,0,0,.7);background:rgba(0,0,0,.05)!important;transform:none!important;opacity:1!important;mask:unset;border-radius:100px;transition:all .2s;}
+.volume .controls .buttons>.volBtn>i{right:140px;}
+.volume .controls .buttons>.volBtn>i:hover{color:var(--SimAPTheme);}
+.controls .buttons>.volBtn>div{width:calc(100% - 85px);position:absolute;margin:auto 0;top:0;bottom:0;right:30px;opacity:0;pointer-events:none;transition:opacity .2s;}
+.volume .controls .buttons>.volBtn>div{opacity:1;pointer-events:all;}
+
+/* 歌词区域 */
+.lyrics{position:absolute;left:410px;top:0;width:calc(100% - 410px);font-size:1.5em;height:100%;transform-origin:left center;transition:all .3s;mask:linear-gradient(180deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.6) 15%,#fff 25%,#fff 75%,hsla(0,0%,100%,.6) 85%,hsla(0,0%,100%,0));}
+.hideLyrics .lyrics{transform:scale(.6);opacity:0;pointer-events:none;}
+.lyrics>div{height:100%;}
+.lyrics>div>div.active{font-weight:bold;}
+body:not(.hideLyrics) .lyricsBtn{color:var(--SimAPTheme);opacity:.7;}
+
+/* 播放列表 */
+.list{position:absolute;left:410px;top:0;width:calc(100% - 410px);height:100%;transform-origin:left center;transition:all .3s;overflow-y:scroll;mask:linear-gradient(180deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.6) 15%,#fff 25%,#fff 75%,hsla(0,0%,100%,.6) 85%,hsla(0,0%,100%,0));}
+.list::before,.list::after{content:"";display:block;height:50%;}
+.hideList .list{transform:scale(.6);opacity:0;pointer-events:none;}
+body:not(.hideList) .listBtn{color:var(--SimAPTheme);opacity:.7;}
