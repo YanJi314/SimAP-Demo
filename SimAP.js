@@ -15,7 +15,7 @@ const SimAPTools = {
 			r = pixels[offset + 0];
 			g = pixels[offset + 1];
 			b = pixels[offset + 2];
-			if (!(r > 250 && g > 250 && b > 250)) pixelArray.push([r, g, b]);
+			pixelArray.push([r, g, b]);
 		}
 		return pixelArray;
 	},
